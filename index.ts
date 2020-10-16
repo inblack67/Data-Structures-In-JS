@@ -1,2 +1,2 @@
 const greet = (msg: string):string => `${msg}`;
-console.log(greet('hello'))
+console.log(greet('hello'));
