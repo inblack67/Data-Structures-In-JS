@@ -35,6 +35,26 @@ class TsLinkedList{
             this.size++;
         }
     }
+    insertAtIndex(data: any, index: number){
+        if(index > this.size){
+            return;
+        }
+        if(index === 0 || !this.head){
+            this.insertFirst(data);
+            return;
+        }
+        let curr: TsNode = this.head;
+        let prev: TsNode;
+        let count = 0;
+        while(count < index){
+            prev = curr;
+            curr = curr.next;
+            count++;
+        }
+        const newNode = new TsNode(data);
+        prev.next = newNode;
+        newNode.next = curr;
+    }
     clearList(){
         this.head = null;
         this.size = 0;
@@ -54,5 +74,5 @@ tsll.insertFirst(20);
 tsll.insertFirst(30);
 tsll.insertLast(40);
 tsll.insertLast(50);
-
+tsll.insertAtIndex(67, 0);
 tsll.display()
