@@ -16,10 +16,14 @@ class LinkedList {
 		this.size = 0;
 	}
 	insertFirst(data) {
-		const newNode = new Node(data, this.head);
-		if (this.head) {
-			this.head.prev = newNode;
+		const newNode = new Node(data);
+		if (!this.head) {
+			this.head = newNode;
+			this.size++;
+			return;
 		}
+		this.head.prev = newNode;
+		newNode.next = this.head;
 		this.head = newNode;
 		this.size++;
 	}
@@ -34,11 +38,11 @@ class LinkedList {
 		this.size++;
 	}
 	insertAtIndex(data, index) {
-		if (index > this.size) {
+		if (index > this.size - 1) {
 			console.log(`Index is invalid`);
 			return;
 		}
-		if (index === 0 || !this.head) {
+		if (index === 0) {
 			this.insertFirst(data);
 			return;
 		}
@@ -54,6 +58,7 @@ class LinkedList {
 		prev.next = newNode;
 		newNode.prev = prev;
 		newNode.next = curr;
+		curr.prev = newNode;
 		this.size++;
 	}
 
@@ -87,6 +92,23 @@ class LinkedList {
 		}
 	}
 
+	reverse() {
+		if (this.size <= 1) {
+			return;
+		}
+		let curr = this.head;
+		let temp;
+		while (curr) {
+			temp = curr.next;
+			curr.next = curr.prev;
+			curr.prev = temp;
+			curr = curr.prev;
+			if (curr && !curr.next) {
+				this.head = curr;
+			}
+		}
+	}
+
 	display() {
 		let curr = this.head;
 		while (curr) {
@@ -108,6 +130,7 @@ ll1.insertFirst(20);
 ll1.insertFirst(30);
 ll1.insertLast(40);
 ll1.insertAtIndex(50, 3);
+ll1.reverse();
 ll1.deleteNode(4);
 console.log(ll1.size);
 ll1.display();
