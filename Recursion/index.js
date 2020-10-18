@@ -37,7 +37,16 @@ const iterationFibonacci = (n) => {
 
 const factorial = (n) => (n <= 1 ? 1 : n * factorial(n - 1));
 
+const towerOfHanoi = (n, A, B, C) => {
+	if (n) {
+		towerOfHanoi(n - 1, A, C, B);
+		console.log(A, C);
+		towerOfHanoi(n - 1, B, A, C);
+	}
+};
+
 console.log(fibonacci(5));
 console.log(iterationFibonacci(5));
 console.log(memoizedFibonacci(5));
 console.log(factorial(5));
+towerOfHanoi(3, 1, 2, 3);
