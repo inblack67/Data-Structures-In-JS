@@ -4,7 +4,7 @@ class Queue {
 		this.size = this.elements.length;
 	}
 	enqueue(el) {
-		this.elements.unshift(el);
+		this.elements.push(el);
 	}
 	dequeue() {
 		this.elements.shift();
