@@ -1,19 +1,35 @@
-class TQueue
+class Queue
 {
     items: number[];
     size: number;
-    constructor ()
+    front: number;
+    rear: number;
+    constructor ( queueSize: number )
     {
-        this.items = [];
-        this.size = this.items.length;
+        this.items = new Array( queueSize );
+        this.size = 0;
+        this.front = -1;
+        this.rear = -1;
     }
     enqueue ( el: number )
     {
-        this.items.push( el );
+        if ( this.rear === this.items.length - 1 )
+        {
+            console.log( `Queue is full` );
+            return;
+        }
+        this.items[ ++this.rear ] = el;
+        this.size++;
     }
     dequeue ()
     {
-        this.items.shift();
+        if ( this.rear === this.front )
+        {
+            console.log( `Queue is empty` );
+            return;
+        }
+        delete this.items[ ++this.front ];
+        this.size--;
     }
     display ()
     {
@@ -21,9 +37,15 @@ class TQueue
     }
 }
 
-const q1 = new TQueue();
+const q1 = new Queue( 5 );
 q1.enqueue( 1 );
 q1.enqueue( 2 );
 q1.enqueue( 3 );
+q1.enqueue( 4 );
+q1.enqueue( 5 );
+q1.dequeue();
+q1.dequeue();
+q1.dequeue();
+q1.dequeue();
 q1.dequeue();
 q1.display();
