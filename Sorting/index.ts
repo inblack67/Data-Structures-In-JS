@@ -60,6 +60,22 @@ class Sort
             }
         }
     }
+    quickSort ( low = 0, high = Number.MAX_VALUE )
+    {
+        if ( low < high )
+        {
+            let j = this.partiton( low, high );
+            this.quickSort( low, j );
+            this.quickSort( j + 1, high );
+        }
+    }
+    partiton ( low: number, high: number )
+    {
+        let pivot = this.arr[ low ];
+        let i = low;
+        let j = high;
+        return 1;
+    }
     swap ( x: number, y: number )
     {
         let temp = this.arr[ x ];
@@ -72,5 +88,6 @@ const arr = [ 8, 5, 7, 3, 2 ];
 const s1 = new Sort( arr );
 // s1.bubbleSort();
 // s1.insertionSort();
-s1.selectionSort();
+// s1.selectionSort();
+// s1.quickSort();
 console.log( s1.arr );
